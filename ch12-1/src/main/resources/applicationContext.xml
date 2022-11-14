@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd">
+    <bean id="userDao" class="com.js.dao.impl.UserDaoImpl"></bean>
+    <bean id="studentDao" class="com.js.dao.impl.StudentDaoImpl"></bean>
+    <bean id="scoreDao" class="com.js.dao.impl.ScoreDaoImpl"></bean>
+    <bean id="myAspect" class="com.js.dao.aspect.MyAspect"></bean>
+    <bean id="userDaoProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="proxyInterfaces" value="com.js.dao.UserDao"></property>
+        <property name="target" ref="userDao"></property>
+        <property name="interceptorNames" value="myAspect"></property>
+    </bean>
+
+</beans>
